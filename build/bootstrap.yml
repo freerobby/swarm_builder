@@ -3,6 +3,7 @@
   tasks:
     - apt:
         update_cache: true
+      become: true
 
 - hosts: all
   roles:

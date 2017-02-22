@@ -1,22 +1,33 @@
-## Astro Raspberry Pi Bootstrapping Tools
+# Swarm Builder
 
-### Bootstrap
+Builds AstroSwarm on a Vagrant virtual machine running Debian, or on a Raspberry Pi running Raspbian.
 
-Builds a headless Raspberry Pi install onto an SD card, preconfigured for your wifi network.
+## How it works
 
-Run `bootstrap.sh` and follow the prompts.
+`bootstrap-pi <pi ip address>` adds your public ssh key to the authorized_keys file on a Raspberry Pi so that the builder can ssh into the box.
 
-### Build
+`deploy-pi <pi ip address>` builds AstroSwarm on the Raspberry Pi.
 
-Builds all astro tools on the Raspberry Pi once the Pi is up and running.
-
-Run `bootstrap-pi <pi ip address>`, followed by `deploy-pi <pi ip address>`.
-
-You can run `deploy-vagrant` (no bootstrap required) to build in an x86 Debian VM.
+`deploy-vagrant` launches a Debian VM (if it's not already running), and builds AstroSwarm on the VM.
 
 ## Requirements
 
-Current tooling assumes a Mac OS X development environment. VMs are used for maximal Linux compatibility.
-
 * Vagrant
 * Virtualbox
+* Public/private RSA keypair stored in ~/.ssh
+
+Current tooling assumes a Mac OS X development system.
+
+## Quick Start
+
+### Building on a Debian VM
+
+1. Run `./deploy-pi`
+1. Access AstroSwarm at `http://localhost:8000`
+
+### Building on a Raspberry Pi
+
+1. Build an AstroSwarm-compatible Raspberry Pi Micro SD card using `swarm_pi_flasher`.
+1. Place Micro SD card into Raspberry Pi, turn it on, and find its IP address on your network. For my manufacturer, `arp -a | grep b8:27` works well for this.
+1. Run `./deploy-pi <pi ip address>` to build AstroSwarm on the Raspberry Pi.
+1. Access AstroSwarm at `http://<pi ip address>:8000`

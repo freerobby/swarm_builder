@@ -110,7 +110,7 @@
 
     - role: novnc_container
 
-    - role: pi_frontend_container
+    - role: swarm_frontend_container
 
   tasks:
     - name: Start containers

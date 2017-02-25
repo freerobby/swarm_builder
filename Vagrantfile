@@ -34,7 +34,7 @@ Vagrant.configure(2) do |config|
   end
   # NoVNC
   config.vm.network "forwarded_port", guest: 6080, host: 6080
-  # pi_frontend
+  # swarm_frontend
   config.vm.network "forwarded_port", guest: 8000, host: 8000
 
   config.ssh.forward_agent = true
